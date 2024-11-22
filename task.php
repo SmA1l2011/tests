@@ -1,3 +1,5 @@
+<?php require("questions.php"); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,46 +12,30 @@
 </head>
 
 <body>
-    <form action="intermediate.php" method="post">
-        <?php
-
-            if ($_POST) {
-                if (isset($_POST['points'])) {
-                    $points = $_POST['points'];
-                } else {
-                    $points = 0;
-                }
-
-                if (isset($_POST['startTime'])) {
-                    $startTime = $_POST['startTime'];
-                } else {
-                    $startTime = time();
-                }
-
-                if (isset($_POST['count'])) {
-                    $count = $_POST['count'];
-                } else {
-                    $count = 0;
-                }
-
-                $questions = json_decode($_POST['questions'], true);
-            }
-
-            echo "<div class='question-block'>";
-                echo "<p class='count'>" . $count + 1 . "/" . count($questions) . "</p>";
-                echo "<p class='question'>" . $questions[$count]['question'] . "</p>";
-                echo "<div class='answer-block'>";
-                foreach ($questions[$count]['answers'] as $answer) {
-                        echo "<input type='submit' class='answer' value='$answer' name='answer'>";
-                    }
-                    echo "<input type='hidden' name='questions' value='" . json_encode($questions) . "'>";
-                    echo "<input type='hidden' name='points' value='$points'>";
-                    echo "<input type='hidden' name='count' value='$count'>";
-                    echo "<input type='hidden' name='startTime' value='$startTime'>";
-                echo "</div>";
-            echo "</div>";
+    <form action="time.php" method="post">
+        
+        <?php if (!isset($_SESSION["user"])) { ?>
+            <?php header("location: index.php"); ?>
+        <?php } ?>
+        <?php $startTime = time(); ?>
+        <?php for ($i = 0; $i < $questionsNum; $i++) { ?>
+            <div class='question-block'>
+                <p class='question'><?php echo $questions2[$i]['question']; ?></p>
+                <input type="hidden" name="<?php echo $i; ?>" value="<?php echo $questions2[$i]['question']; ?>">
+                <div class='answer-block'>
+                <?php foreach ($questions2[$i]['answers'] as $answer) { ?>
+                    <div class="reletive">
+                        <input type='radio' class='answer' value='<?php echo $answer; ?>' id="<?php echo $answer; ?>" name="<?php echo "answer" . $i; ?>">
+                        <label for="<?php echo $answer; ?>" class='answerL'><?php echo $answer; ?></label>
+                    </div>
+                <?php } ?>
+                </div>
+            </div>
+        <?php } ?>
+        <input type='hidden' value='<?php echo $questionsNum; ?>' name='questionsNum'>
+        <input type='hidden' value='<?php echo $startTime; ?>' name='startTime'>
+        <input type='submit' class='answer' value='готово' name='answer'>
             
-        ?>
     </form>
 </body>
 

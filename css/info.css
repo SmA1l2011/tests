@@ -1,0 +1,53 @@
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    background: #000;
+}
+
+input[type="submit"] {
+    background: unset;
+    border: unset;
+    font: 600 16px Arial;
+    color: #44ff00;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+.best td {
+    background: #44ff00;
+    border: 3px solid #000;
+    color: #000;
+}
+
+a {
+    display: block;
+    text-align: center;
+    border: 3px solid #44ff00;
+    font: 600 16px Arial;
+    color: #44ff00;
+    text-decoration: none;
+    min-width: 240px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.05s ease;
+}
+
+a:hover {
+    transform: scale(0.9) translateY(10%);
+}
+
+table {
+    border-collapse: collapse;
+    border: 4px solid #44ff00;
+}
+
+td {
+    border: 3px solid #44ff00;
+    font: 600 16px Arial;
+    color: #44ff00;
+    padding: 10px;
+}

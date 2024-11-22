@@ -1,0 +1,176 @@
+body {
+    flex-direction: unset;
+    align-items: stretch;
+}
+
+#file {
+    display: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    border: 3px solid #000;
+    font: 600 16px Arial;
+    color: #000;
+    padding: 10px;
+}
+
+.best td {
+    background: #bbbbbb;
+}
+
+.main-block,
+.changeAva {
+    max-width: 300px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px 75px;
+}
+
+.changeAvaBody {
+    align-items: center;
+}
+
+.changeAva {
+    display: flex;
+    flex-direction: column;
+    row-gap: 75px;
+    max-width: 500px;
+    padding: 75px;
+}
+
+.changeAva input[type="file"] {
+    width: unset;
+}
+
+.main-block:first-child {
+    margin-right: 30px;
+}
+
+.main-block:last-child {
+    max-width: 700px;
+    overflow-y: scroll;
+}
+
+.name-block {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+    margin-bottom: 20px;
+}
+
+.name-block p {
+    font: 500 20px Arial;
+}
+
+.name-block label:hover {
+    cursor: pointer;
+}
+
+.name-block img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.button {
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.red {
+    background: red;
+    border: 2px solid #8e0000;
+} 
+
+.red:hover {
+    background: #db0000;
+    border: 2px solid #8e0000;
+} 
+
+.green {
+    background: #07d800;
+    border: 3px solid #00bb19;
+} 
+
+.green:hover {
+    background: #07d200;
+    border: 3px solid #00bb19;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    padding-bottom: 15px;
+}
+
+.nameReplace-block .button {
+    margin-bottom: 15px;
+}
+
+.form-block {
+    display: flex;
+    column-gap: 10px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    max-width: 300px;
+    background: #ddd;
+    border-radius: 15px;
+    padding: 35px 20px;
+}
+
+.form-block input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #a25400;
+    font: 400 16px Arial;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-block input[type="text"]:focus {
+    transform: scale(1.02);
+}
+
+.form-block input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #a25400;
+    font: 400 16px Arial;
+    transition: all 0.3s ease;
+}
+
+.form-block .hov:hover {
+    color: #fff;
+    background-color: #00d304;
+    border: 1px solid transparent;
+    transform: scale(1.05);
+}
+
+.form-block .hov:last-child:hover {
+    color: #fff;
+    background-color: #d30000;
+    border: 1px solid transparent;
+    transform: scale(1.05);
+}
+
+.results {
+    font: 400 16px Arial;
+    margin: 0;
+}
+
+.last-results {
+    font: 700 20px Arial;
+    margin-bottom: 5px;
+}
+
+.results {
+    padding-left: 15px;
+}

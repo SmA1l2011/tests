@@ -1,0 +1,36 @@
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    row-gap: 15px;
+    flex-wrap: wrap;
+    max-width: 300px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+.form input {
+    width: 100%;
+}
+
+.form h1 {
+    font: 700 36px Arial;
+}
+
+.form input:not([type="submit"]) {
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #a25400;
+    font: 400 16px Arial;
+    outline: none;
+}
+
+.form input:not([type="submit"]):focus {
+    transform: scale(1.1);
+}
+
+.form p {
+    font: 400 16px Arial;
+    color: red;
+}

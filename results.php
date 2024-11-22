@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+<?php require("questions.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,25 +12,23 @@
 </head>
 
 <body>
-    <form action="results.php" method="post">
-        <?php
-            $questions = json_decode($_POST['questions'], true);
-            $points = $_POST['points'];
-            $endTime = $_POST['endTime'];
-            $startTime = $_POST['startTime'];
-            $percentages = $points / (count($questions) / 100);
-
-            echo "<div class='results'>";
-                echo "<p>кількість правельних відповідей <b><span class='before'></span><i>$points/" . count($questions) . "</i></b></p>";
-                echo "<p>кількість балів в відсотках <b><span class='before'></span><i>" . floor($percentages) . "/100</i></b></p>";
-                echo "<p>кількість балів в по 12 бальній системі <b><span class='before'></span><i>" . $percentages * (count($questions) / 100) . "/12</i></b></p>";
-                echo "<p>дата та час проходження тесту " . date("d.m.y h:i:s", $endTime) . "</p>";
-                echo "<p>ви пройшли тест за " . date("i:s", $endTime - $startTime) . "</p>";
-                echo "<input type='hidden' id='percentages' name='percentages' value='" . floor($percentages) . "'>";
-            echo "</div>";
-        
-        ?>
-    </form>
+    <div class='results'>
+        <form action="results.php" method="post">
+            <?php require "resultsBack.php"; ?>
+            <p>кількість правильних відповідей <b><span class='before'></span><i><?php echo "$points/$questionsNum"; ?></i></b></p>
+            <p>кількість балів в відсотках <b><span class='before'></span><i><?php echo floor($percentages) . "/" . 100; ?></i></b></p>
+            <p>кількість балів в по 12 бальній системі <b><span class='before'></span><i><?php echo $percentages * (count($questions) / 100) . "/" . 12; ?></i></b></p>
+            <p>дата та час проходження тесту <?php echo date("d.m.y h:i:s", $endTime); ?></p>
+            <p>ви пройшли тест за <?php echo date("i:s", $endTime - $startTime); ?></p>
+            <input type='hidden' id='percentages' name='percentages' value='<?php echo floor($percentages); ?>'> 
+            <a href="profile.php" class="button">повернутись до прфілю</a>
+            <input type="hidden" name="questionsNum" value="<?= $questionsNum ?>">
+            <?php $post = $_POST; ?>
+            <?php foreach ($post as $key => $value) { ?>
+                <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
+            <?php } ?>
+        </form>
+    </div>
     <script src="js/script.js"></script>
 </body>
 

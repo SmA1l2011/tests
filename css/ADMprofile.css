@@ -1,0 +1,27 @@
+body {
+    background: #000;
+}
+
+.main-block,
+.button,
+.form-block,
+.form-block input[type="text"],
+.form-block input[type="submit"] {
+    border-radius: unset;
+    background: unset;
+    border: 3px solid #44ff00;
+    color: #44ff00;
+    transition: all 0.05s ease;
+}
+
+.button:hover,
+#body .form-block .hov:hover {
+    background: unset;
+    border: 3px solid #44ff00;
+    color: #44ff00;
+    transform: scale(0.9) translateY(10%);
+}
+
+.form-block input[type="text"]:focus {
+    transform: scale(1);
+}
