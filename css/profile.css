@@ -1,6 +1,28 @@
 body {
     flex-direction: unset;
+    column-gap: 20px;
     align-items: stretch;
+    height: unset;
+    padding-bottom: 20px;
+}
+
+.dark {
+    background: #0d1117;
+}
+
+.theme {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 50px;
+    width: 100%;
+    background: #fff;
+    padding: 30px;
+}
+
+.dark .theme {
+    background: #010409;
+    border-bottom: 1px solid #fff;
 }
 
 #file {
@@ -19,7 +41,11 @@ td {
 }
 
 .best td {
-    background: #bbbbbb;
+    background: #c2ffae;
+}
+
+.dark .best td {
+    background: #1f6feb;
 }
 
 .main-block,
@@ -30,20 +56,47 @@ td {
     padding: 20px 75px;
 }
 
+.dark .main-block, 
+.dark .changeAva {
+    background: #151b23;
+    border: 1px solid #fff;
+}
+
+.dark .main-block table td {
+    border: 3px solid #fff;
+}
+
+.dark .main-block table td:not(.best td) {
+    color: #fff;
+}
+
+.dark .main-block p, 
+.dark .changeAva h2 {
+    color: #fff;
+}
+
+.dark .main-block label img {
+    border: 2px solid #fff;
+}
+
 .changeAvaBody {
     align-items: center;
 }
 
 .changeAva {
-    display: flex;
-    flex-direction: column;
     row-gap: 75px;
-    max-width: 500px;
-    padding: 75px;
+    max-width: 300px;
+    padding: 50px;
+}
+
+.changeAva .form-block {
+    max-width: unset;
 }
 
 .changeAva input[type="file"] {
-    width: unset;
+    min-width: unset;
+    max-width: 275px;
+    font-size: 20px;
 }
 
 .main-block:first-child {
@@ -52,7 +105,12 @@ td {
 
 .main-block:last-child {
     max-width: 700px;
+    max-height: 560px;
     overflow-y: scroll;
+}
+
+.main-block:last-child::-webkit-scrollbar {
+    display: none;
 }
 
 .name-block {
@@ -85,21 +143,32 @@ td {
 .red {
     background: red;
     border: 2px solid #8e0000;
-} 
+}
 
 .red:hover {
     background: #db0000;
     border: 2px solid #8e0000;
-} 
+}
 
 .green {
     background: #07d800;
     border: 3px solid #00bb19;
-} 
+}
 
 .green:hover {
     background: #07d200;
     border: 3px solid #00bb19;
+}
+
+.dark .green, 
+.dark .changeAva .button {
+    background: #1f6feb;
+    border: 3px solid #1f6feb;
+}
+
+.dark .nameReplace-block .button {
+    background: #1f6feb;
+    border: 3px solid #1f6feb;
 }
 
 .form {
@@ -113,32 +182,31 @@ td {
     margin-bottom: 15px;
 }
 
-.form-block {
+.end-block {
     display: flex;
     column-gap: 10px;
-    row-gap: 10px;
-    flex-wrap: wrap;
-    max-width: 300px;
-    background: #ddd;
-    border-radius: 15px;
-    padding: 35px 20px;
 }
 
-.form-block input[type="text"] {
-    width: 100%;
+.changeAva h2 {
+    font: 700 32px Arial;
+}
+
+.changeAva input[type="text"] {
+    width: calc(100% - 20px);
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #a25400;
     font: 400 16px Arial;
+    margin-bottom: 60px;
     outline: none;
     transition: all 0.3s ease;
 }
 
-.form-block input[type="text"]:focus {
+.changeAva input[type="text"]:focus {
     transform: scale(1.02);
 }
 
-.form-block input[type="submit"] {
+.done {
     width: 100%;
     padding: 10px;
     border-radius: 10px;
@@ -147,14 +215,14 @@ td {
     transition: all 0.3s ease;
 }
 
-.form-block .hov:hover {
+.hov-one:hover {
     color: #fff;
     background-color: #00d304;
     border: 1px solid transparent;
     transform: scale(1.05);
 }
 
-.form-block .hov:last-child:hover {
+.hov-two:hover {
     color: #fff;
     background-color: #d30000;
     border: 1px solid transparent;

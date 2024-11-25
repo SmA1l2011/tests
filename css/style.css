@@ -1,7 +1,9 @@
 body {
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     flex-direction: column;
     row-gap: 50px;
     height: calc(100vh - 20px);

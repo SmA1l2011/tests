@@ -7,7 +7,7 @@
         for ($i = 0; $i < $questionsNum; $i++) { 
             foreach ($questions as $key => $question) {
                 if ($questions[$key]['question'] == $_POST[$i]) {
-                    if ($_POST["answer" . $i] == $questions[$key]['correct_answer']) {
+                    if (isset($_POST["answer" . $i]) && $_POST["answer" . $i] == $questions[$key]['correct_answer']) {
                         $points++;
                     }
                 }

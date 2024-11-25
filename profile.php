@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php require "profileBack.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +13,16 @@
         <link rel="stylesheet" href="css/ADMprofile.css">
     <?php } ?>
 </head>
-<body id="body">
+<?php if ($_COOKIE[explode("@", $_SESSION["user"]["email"])[0]]) { ?>
+    <body id="body">
+<?php } else { ?>
+    <body id="body" class="dark">
+<?php } ?>
+    <form action="profile.php" method="post" class="theme">
+        <input type="submit" value="світла" name="light">
+        <input type="submit" value="темна" name="dark">
+    </form>
     <div class="main-block">
-        <?php require "profileBack.php"; ?>
         <form action="changeAva.php" method="post" enctype="multipart/form-data" class="name-block">
             <input type="submit" name="file" id="file">
             <?php foreach ($usersData as $key => $user) { ?>
@@ -36,21 +44,10 @@
                 <input type="submit" value="інформація користувачів" class="button green">
             </form>
         <?php } ?>
+        <form action="changeAva.php" method="post" class="form">
+            <input type="submit" value="редагувати профіль" name="exit" class="button green">
+        </form>
         <form action="profile.php" method="post" class="form">
-            <div class="nameReplace-block">
-                <input type="submit" value="змінити ім'я" name="nameReplace" class="button">
-                <div class="form-block">
-                    <?php if (isset($_POST["nameReplace"])) { ?>
-                        <input type="text" value="<?php echo $_SESSION["user"]["userName"]; ?>" name="newName" placeholder="введіть своє нове ім'я" maxlength="15">
-                        <input type="submit" value="готово" name="done" class="hov">
-                        <input type="submit" value="скасувати" name="cancel" class="hov">
-                    <?php } else { ?>
-                        <input type="text" value="<?php echo $_SESSION["user"]["userName"]; ?>" name="newName" disabled>
-                        <input type="submit" value="готово" name="done" disabled>
-                        <input type="submit" value="скасувати" name="cancel" disabled>
-                    <?php } ?>
-                </div>
-            </div>
             <input type="submit" value="вийти з акаунту" name="exit" class="button red">
             <?php if ($_SESSION["user"]["email"] !== "ADMIN_PRO_MAX@gmail.com") { ?> 
                 <input type="submit" value="видалити акаунт" name="delete" class="button red">

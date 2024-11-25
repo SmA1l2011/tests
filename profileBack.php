@@ -4,6 +4,21 @@
         header("location: index.php");
     }
 
+    if (!isset($_COOKIE[explode("@", $_SESSION["user"]["email"])[0]])) {
+        setcookie(explode("@", $_SESSION["user"]["email"])[0], 1, time()+(30 * 24 * 3600));
+        header("location: profile.php");
+    }
+    
+    if (isset($_POST["light"])) {
+        setcookie(explode("@", $_SESSION["user"]["email"])[0], 1, time()+(30 * 24 * 3600));
+        header("location: profile.php");
+    }
+
+    if (isset($_POST["dark"])) {
+        setcookie(explode("@", $_SESSION["user"]["email"])[0], 0, time()+(30 * 24 * 3600));
+        header("location: profile.php");
+    }
+
     $points = 0;
     $count = 0;
 
@@ -21,15 +36,23 @@
     } 
     fclose($streamR);
 
-    if (isset($_POST["sendAva"])) {
+    if (isset($_POST["exit"])) {
+        unset($_SESSION["user"]);
+        header("location: index.php");
+    }
+
+    // Avatar replace
+
+    if (isset($_POST["done"])) {
         foreach ($usersData as $key => $user) {
             if ($user[1] == $_SESSION["user"]["email"] && isset($user[3]) && file_exists($user[3])) {
                 unlink($user[3]);
             }
         }
-        $target_file = "img/" . $_FILES["ava"]["name"];  
+        $fileTypeArr = explode(".", $_FILES["ava"]["name"]);
+        $fileType = $fileTypeArr[count($fileTypeArr) - 1];
+        $target_file = "img/" . $_SESSION["user"]["userName"] . "." . $fileType;
         $isUpload = true;
-        $fileType = strtolower(pathinfo($target_file)['extension']);
     
         if ($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg") {
             $isUpload = false;
@@ -53,10 +76,17 @@
         }
     }
 
+    // Name replace
+
     if (isset($_POST["done"]) && !empty($_POST["newName"])) {
         foreach ($usersData as $key => $user) {
             if ($user[1] == $_SESSION["user"]["email"]) {
                 $usersData[$key][0] = $_POST["newName"];
+                if (isset($usersData[$key][3])) {
+                    $lastFileName = $usersData[$key][3];
+                    $usersData[$key][3] = explode("/", $usersData[$key][3])[0] . "/" . $_POST["newName"] . "." . explode(".", $usersData[$key][3])[1];
+                    rename($lastFileName, $usersData[$key][3]);
+                }
             }
         }
 
@@ -72,9 +102,8 @@
         header("location: profile.php");
     }
 
-    if (isset($_POST["exit"])) {
-        unset($_SESSION["user"]);
-        header("location: index.php");
+    if (isset($_POST["cancel"])) {
+        header("location: profile.php");
     }
     
     if (isset($_POST["delete"])) {

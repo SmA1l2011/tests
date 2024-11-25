@@ -11,10 +11,14 @@
     <link rel="stylesheet" href="css/task.css">
 </head>
 
-<body>
+<?php if ($_COOKIE[explode("@", $_SESSION["user"]["email"])[0]]) { ?>
+    <body id="body">
+<?php } else { ?>
+    <body id="body" class="dark">
+<?php } ?>
     <form action="time.php" method="post">
         
-        <?php if (!isset($_SESSION["user"])) { ?>
+        <?php if (!isset($_SESSION["user"]) || $_SESSION["user"]["email"] == "ADMIN_PRO_MAX@gmail.com") { ?>
             <?php header("location: index.php"); ?>
         <?php } ?>
         <?php $startTime = time(); ?>
@@ -34,7 +38,7 @@
         <?php } ?>
         <input type='hidden' value='<?php echo $questionsNum; ?>' name='questionsNum'>
         <input type='hidden' value='<?php echo $startTime; ?>' name='startTime'>
-        <input type='submit' class='answer' value='готово' name='answer'>
+        <input type='submit' class='button' value='готово' name='answer'>
             
     </form>
 </body>
