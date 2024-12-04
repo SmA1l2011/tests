@@ -22,33 +22,23 @@
     $points = 0;
     $count = 0;
 
-    $stream = fopen("csv/users.csv", "r");
-    $usersData = [];
-    while ($row = fgetcsv($stream)) {
-        $usersData[] = $row;
-    } 
-    fclose($stream);
-
-    $streamR = fopen("csv/testResults.csv", "r");
-    $resultsData = [];
-    while ($row = fgetcsv($streamR)) {
-        $resultsData[] = $row;
-    } 
-    fclose($streamR);
+    $usersData = readCsv("csv/users.csv", "r");
+    $resultsData = readCsv("csv/testResults.csv", "r");
 
     if (isset($_POST["exit"])) {
         unset($_SESSION["user"]);
         header("location: index.php");
     }
-
+    
     // Avatar replace
 
-    if (isset($_POST["done"])) {
+    if (isset($_POST["done"]) && !empty($_FILES["ava"]["name"])) {
         foreach ($usersData as $key => $user) {
             if ($user[1] == $_SESSION["user"]["email"] && isset($user[3]) && file_exists($user[3])) {
                 unlink($user[3]);
             }
         }
+        
         $fileTypeArr = explode(".", $_FILES["ava"]["name"]);
         $fileType = $fileTypeArr[count($fileTypeArr) - 1];
         $target_file = "img/" . $_SESSION["user"]["userName"] . "." . $fileType;
@@ -82,7 +72,7 @@
         foreach ($usersData as $key => $user) {
             if ($user[1] == $_SESSION["user"]["email"]) {
                 $usersData[$key][0] = $_POST["newName"];
-                if (isset($usersData[$key][3])) {
+                if (isset($usersData[$key][3]) && !empty($_FILES["ava"]["name"])) {
                     $lastFileName = $usersData[$key][3];
                     $usersData[$key][3] = explode("/", $usersData[$key][3])[0] . "/" . $_POST["newName"] . "." . explode(".", $usersData[$key][3])[1];
                     rename($lastFileName, $usersData[$key][3]);
@@ -99,7 +89,7 @@
         fclose($stream);
     
         $_SESSION["user"]["userName"] = $_POST["newName"];
-        header("location: profile.php");
+        // header("location: profile.php");
     }
 
     if (isset($_POST["cancel"])) {

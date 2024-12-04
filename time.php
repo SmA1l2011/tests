@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,9 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/time.css">
 </head>
 
-<body>
+<?php if ($_COOKIE[explode("@", $_SESSION["user"]["email"])[0]]) { ?>
+    <body id="body">
+<?php } else { ?>
+    <body id="body" class="dark">
+<?php } ?>
     <form action="results.php" method="post">
 
         <?php $post = $_POST; ?>

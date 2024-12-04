@@ -1,12 +1,16 @@
 body {
     background: #000;
+    padding-top: 150px;
 }
 
 .main-block,
 .button,
 .form-block,
 .form-block input[type="text"],
-.form-block input[type="submit"] {
+.form-block input[type="submit"],
+.changeAva,
+.changeAva input[type="text"],
+.changeAva input[type="submit"] {
     border-radius: unset;
     background: unset;
     border: 3px solid #44ff00;
@@ -15,7 +19,8 @@ body {
 }
 
 .button:hover,
-#body .form-block .hov:hover {
+#body .form-block .hov:hover,
+.changeAva input[type="submit"]:hover {
     background: unset;
     border: 3px solid #44ff00;
     color: #44ff00;
@@ -24,4 +29,8 @@ body {
 
 .form-block input[type="text"]:focus {
     transform: scale(1);
+}
+
+.changeAva input[type="file"] {
+    
 }

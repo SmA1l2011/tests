@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php require "functions.php"; ?>
+<?php require "loginBack.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
         <h1>Логінізація</h1>
         <input type="email" name="email" placeholder="введіть свій email" value="<?= $_POST["userName"] ?? "" ?>" maxlength="50">
         <input type="password" name="password" placeholder="введіть свій пароль" maxlength="24">
-        <?php require "loginBack.php"; ?>
+        <p><?= $error ?></p>
         <a href="register.php">регестрація</a>
         <input type="submit" value="залогінитись" class="button">
     </form>

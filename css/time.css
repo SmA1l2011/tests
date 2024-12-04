@@ -1,0 +1,12 @@
+.dark {
+    background: #0d1117;
+}
+
+.dark .button {
+    background: #1f6feb;
+    border: 3px solid #1f6feb;
+}
+
+.dark .button:hover {
+    background: #0048bb;
+}

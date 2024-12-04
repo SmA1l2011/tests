@@ -20,6 +20,49 @@ body {
     padding: 30px;
 }
 
+.theme input {
+    padding: 10px;
+    padding-left: 40px;
+    background: unset;
+    border: 1px solid #010409;
+    color: #010409;
+    font: 500 14px Arial;
+    min-width: 120px;
+}
+
+.dark .theme input {
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.theme label {
+    position: relative;
+}
+
+.theme label::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    background: url(../img/sun.svg);
+    background-size: 100%;
+    transition: all 0.3s ease;
+}
+
+.theme label:last-child::before {
+    background: url(../img/moon.svg) no-repeat;
+    background-size: 86%;
+}
+
+.theme label:hover::before {
+    width: 35px;
+    height: 35px;
+    left: calc(10% - 5px);
+}
+
 .dark .theme {
     background: #010409;
     border-bottom: 1px solid #fff;
@@ -122,6 +165,11 @@ td {
 
 .name-block p {
     font: 500 20px Arial;
+    overflow-x: scroll;
+}
+
+.name-block p:last-child::-webkit-scrollbar {
+    display: none;
 }
 
 .name-block label:hover {

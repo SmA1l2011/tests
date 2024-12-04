@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php require "functions.php"; ?>
 <?php require "profileBack.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,10 +19,12 @@
 <?php } else { ?>
     <body id="body" class="dark">
 <?php } ?>
-    <form action="profile.php" method="post" class="theme">
-        <input type="submit" value="світла" name="light">
-        <input type="submit" value="темна" name="dark">
-    </form>
+    <?php if ($_SESSION["user"]["email"] !== "ADMIN_PRO_MAX@gmail.com") { ?> 
+        <form action="profile.php" method="post" class="theme">
+            <label for="light"><input type="submit" value="світла" name="light" id="light"></label>
+            <label for="dark"><input type="submit" value="темна" name="dark" id="dark"></label>
+        </form>
+    <?php } ?>
     <div class="main-block">
         <form action="changeAva.php" method="post" enctype="multipart/form-data" class="name-block">
             <input type="submit" name="file" id="file">
