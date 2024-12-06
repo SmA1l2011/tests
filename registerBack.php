@@ -5,12 +5,7 @@
     // $error = "";
 
     if ($_POST) {
-        $stream = fopen("csv/users.csv", "a+");
-        $usersData = [];
-        while ($row = fgetcsv($stream)) {
-            $usersData[] = $row;
-        }
-        
+        $usersData = readCsv("csv/users.csv", "r");
         try {
             if (empty($_POST["userName"]) || strlen($_POST["userName"]) > 50 || strlen($_POST["userName"]) < 2) {
                 throw new Exception("довжина імені має бути від 2 до 50 символів");
@@ -33,6 +28,7 @@
                             if ($_POST["password"] !== $_POST["passwordAg"]) {     
                                 throw new Exception("пароль не зівпадає з паролем");
                             } else {
+                                $stream = fopen("csv/users.csv", "a+");
                                 fputcsv($stream, [$_POST["userName"], $_POST["email"], password_hash($_POST["password"], PASSWORD_BCRYPT, ["cost" => 12])]);
                                 fclose($stream);
                                 header("location: login.php");

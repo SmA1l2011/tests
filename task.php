@@ -1,4 +1,5 @@
-<?php require("questions.php"); ?>
+<?php require "functions.php"; ?>
+<?php require "questions.php"; ?>
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,29 +18,27 @@
     <body id="body" class="dark">
 <?php } ?>
     <form action="time.php" method="post">
-        
         <?php if (!isset($_SESSION["user"]) || $_SESSION["user"]["email"] == "ADMIN_PRO_MAX@gmail.com") { ?>
             <?php header("location: index.php"); ?>
         <?php } ?>
         <?php $startTime = time(); ?>
         <?php for ($i = 0; $i < $questionsNum; $i++) { ?>
             <div class='question-block'>
-                <p class='question'><?php echo $questions2[$i]['question']; ?></p>
-                <input type="hidden" name="<?php echo $i; ?>" value="<?php echo $questions2[$i]['question']; ?>">
+                <p class='question'><?= $questions2[$i]['question']; ?></p>
+                <input type="hidden" name="<?= $i; ?>" value="<?= $questions2[$i]['question']; ?>">
                 <div class='answer-block'>
-                <?php foreach ($questions2[$i]['answers'] as $answer) { ?>
-                    <div class="reletive">
-                        <input type='radio' class='answer' value='<?php echo $answer; ?>' id="<?php echo $answer; ?>" name="<?php echo "answer" . $i; ?>">
-                        <label for="<?php echo $answer; ?>" class='answerL'><?php echo $answer; ?></label>
-                    </div>
-                <?php } ?>
+                    <?php foreach ($questions2[$i]['answers'] as $answer) { ?>
+                        <div class="reletive">
+                            <input type='radio' class='answer' value='<?= $answer; ?>' id="<?= $answer; ?>" name="<?= "answer" . $i; ?>">
+                            <label for="<?= $answer; ?>" class='answerL'><?= $answer; ?></label>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         <?php } ?>
-        <input type='hidden' value='<?php echo $questionsNum; ?>' name='questionsNum'>
-        <input type='hidden' value='<?php echo $startTime; ?>' name='startTime'>
+        <input type='hidden' value='<?= $questionsNum; ?>' name='questionsNum'>
+        <input type='hidden' value='<?= $startTime; ?>' name='startTime'>
         <input type='submit' class='button' value='готово' name='answer'>
-            
     </form>
 </body>
 

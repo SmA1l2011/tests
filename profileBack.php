@@ -4,19 +4,12 @@
         header("location: index.php");
     }
 
-    if (!isset($_COOKIE[explode("@", $_SESSION["user"]["email"])[0]])) {
-        setcookie(explode("@", $_SESSION["user"]["email"])[0], 1, time()+(30 * 24 * 3600));
-        header("location: profile.php");
-    }
-    
-    if (isset($_POST["light"])) {
-        setcookie(explode("@", $_SESSION["user"]["email"])[0], 1, time()+(30 * 24 * 3600));
-        header("location: profile.php");
+    if (isset($_POST["light"]) || !isset($_COOKIE[explode("@", $_SESSION["user"]["email"])[0]])) {
+        setTheme(1, "profile.php", (30 * 24 * 3600));
     }
 
     if (isset($_POST["dark"])) {
-        setcookie(explode("@", $_SESSION["user"]["email"])[0], 0, time()+(30 * 24 * 3600));
-        header("location: profile.php");
+        setTheme(0, "profile.php", (30 * 24 * 3600));
     }
 
     $points = 0;

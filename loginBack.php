@@ -2,11 +2,8 @@
 
     session_start();
 
-    $error = "";
-
     if (isset($_POST["password"]) && isset($_POST["email"])) {
-        $usersData = readCsv("csv/userss.csv", "r");
-
+        $usersData = readCsv("csv/users.csv", "r");
         try {
             foreach ($usersData as $user) {
                 if ($user[1] == $_POST["email"] && password_verify($_POST["password"], $user[2])) {
