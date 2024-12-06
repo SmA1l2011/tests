@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php require "functions.php"; ?>
+<?php require_once "functions.php"; ?>
 <?php require "profileBack.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +64,7 @@
                 <?php foreach ($resultsData as $key => $result) { ?>
                     <?php if ($result[0] == $_SESSION["user"]["email"]) { ?>
                         <?php if (explode("/", $result[2])[0] > $points) { ?>
-                            <?php $points = explode("/", $result[2])[1] ?>
+                            <?php $points = explode("/", $result[2])[0] ?>
                         <?php } ?>
                     <?php } ?>
                 <?php } ?>

@@ -1,4 +1,4 @@
-<?php require "functions.php"; ?>
+<?php require_once "functions.php"; ?>
 <?php require "loginBack.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +13,7 @@
 <body>
     <form action="login.php" method="post" class="form">
         <h1>Логінізація</h1>
-        <input type="email" name="email" placeholder="введіть свій email" value="<?= $_POST["userName"] ?? "" ?>" maxlength="50">
+        <input type="email" name="email" placeholder="введіть свій email" value="<?= $_POST["email"] ?? "" ?>" maxlength="50">
         <input type="password" name="password" placeholder="введіть свій пароль" maxlength="24">
         <p><?= $error ?? "" ?></p>
         <a href="register.php">регестрація</a>
