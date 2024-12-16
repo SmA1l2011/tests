@@ -1,3 +1,4 @@
+<?php require_once "functions.php"; ?>
 <?php require "infoBack.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
