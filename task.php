@@ -1,6 +1,5 @@
-<?php require "functions.php"; ?>
+<?php require_once "functions.php"; ?>
 <?php require "questions.php"; ?>
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 

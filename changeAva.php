@@ -1,5 +1,5 @@
-<?php session_start(); ?>
-<?php require "functions.php"; ?>
+<?php require_once "functions.php"; ?>
+<?php require "changeAvaBack.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,13 +23,12 @@
             <input type="submit" value="світла" name="light">
             <input type="submit" value="темна" name="dark">
         </form>
-    <?php } ?>
-    <?php require "changeAvaBack.php"; ?>
+    <?php } ?> 
     <form action="profile.php" method="post" class="changeAva" enctype="multipart/form-data">
         <h2>Зміна Аватарки:</h2>
         <input type="file" name="ava" class="button">
         <h2>Зміна Імені:</h2>
-        <input type="text" value="<?php echo $_SESSION["user"]["userName"]; ?>" name="newName" placeholder="введіть своє нове ім'я" maxlength="50">
+        <input type="text" value="<?= $_SESSION["user"]["userName"]; ?>" name="newName" placeholder="введіть своє нове ім'я" maxlength="50">
         <div class="end-block">
             <input type="submit" name="done" value="готово" class="done hov-one">
             <input type="submit" name="cancel" value="скасувати" class="done hov-two">

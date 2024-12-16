@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php require_once "functions.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,9 +20,9 @@
 
         <?php $post = $_POST; ?>
         <?php foreach ($post as $key => $value) { ?>
-            <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
+            <input type="hidden" name="<?= $key; ?>" value="<?= $value; ?>">
         <?php } ?>
-        <input type="hidden" name="endTime" value="<?php echo time(); ?>">
+        <input type="hidden" name="endTime" value="<?= time(); ?>">
         <input type="submit" name="testEnd" value="подивитись результати" class="button">
             
     </form>

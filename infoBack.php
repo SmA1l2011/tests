@@ -1,11 +1,6 @@
 <?php
-
-    $stream = fopen("csv/users.csv", "r");
-    $usersData = [];
-    while ($row = fgetcsv($stream)) {
-        $usersData[] = $row;
-    } 
-    fclose($stream);
+    require_once "functions.php";
+    $usersData = readCsv("csv/users.csv", "r");
     unset($usersData[0]);
 
 ?>

@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php require_once "functions.php"; ?>
 <?php require("questions.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,17 +18,17 @@
 <?php } ?>
     <form action="results.php" method="post" class='results'>
         <?php require "resultsBack.php"; ?>
-        <p>кількість правильних відповідей <b><span class='before'></span><i><?php echo "$points/$questionsNum"; ?></i></b></p>
-        <p>кількість балів в відсотках <b><span class='before'></span><i><?php echo floor($percentages) . "/" . 100; ?></i></b></p>
-        <p>кількість балів в по 12 бальній системі <b><span class='before'></span><i><?php echo $percentages * (count($questions) / 100) . "/" . 12; ?></i></b></p>
-        <p>дата та час проходження тесту <?php echo date("d.m.y h:i:s", $endTime); ?></p>
-        <p>ви пройшли тест за <?php echo date("i:s", $endTime - $startTime); ?></p>
-        <input type='hidden' id='percentages' name='percentages' value='<?php echo floor($percentages); ?>'> 
+        <p>кількість правильних відповідей <b><span class='before'></span><i><?= "$points/$questionsNum"; ?></i></b></p>
+        <p>кількість балів в відсотках <b><span class='before'></span><i><?= floor($percentages) . "/" . 100; ?></i></b></p>
+        <p>кількість балів в по 12 бальній системі <b><span class='before'></span><i><?= $percentages * (count($questions) / 100) . "/" . 12; ?></i></b></p>
+        <p>дата та час проходження тесту <?= date("d.m.y h:i:s", $endTime); ?></p>
+        <p>ви пройшли тест за <?= date("i:s", $endTime - $startTime); ?></p>
+        <input type='hidden' id='percentages' name='percentages' value='<?= floor($percentages); ?>'> 
         <a href="profile.php" class="button">повернутись до прфілю</a>
         <input type="hidden" name="questionsNum" value="<?= $questionsNum ?>">
         <?php $post = $_POST; ?>
         <?php foreach ($post as $key => $value) { ?>
-            <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
+            <input type="hidden" name="<?= $key; ?>" value="<?= $value; ?>">
         <?php } ?>
     </form>
     <script src="js/script.js"></script>

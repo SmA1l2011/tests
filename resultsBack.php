@@ -25,10 +25,7 @@
         $usersData[] = $percentages * (count($questions) / 100) . "/" . 12;
         $usersData[] = date("d.m.y h:i:s", $endTime);
         $usersData[] = date("i:s", $endTime - $startTime);
-
-        $stream = fopen("csv/testResults.csv", "a");
-        fputcsv($stream, $usersData);
-        fclose($stream);
+        putToCsv("csv/testResults.csv", "a+", $usersData);
     }
 
 ?>

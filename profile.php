@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php require_once "functions.php"; ?>
 <?php require "profileBack.php"; ?>
 <!DOCTYPE html>
@@ -29,16 +28,16 @@
         <form action="changeAva.php" method="post" enctype="multipart/form-data" class="name-block">
             <input type="submit" name="file" id="file">
             <?php foreach ($usersData as $key => $user) { ?>
-                <?php if ($user[1] == $_SESSION["user"]["email"] && isset($user[3])) { ?>
-                    <label for="file"><img src="<?= $user[3]; ?>" alt="user"></label>
+                <?php if ($user[1] == $_SESSION["user"]["email"] && isset($user[4])) { ?>
+                    <label for="file"><img src="<?= $user[4]; ?>" alt="user"></label>
                 <?php } ?>
-                <?php if ($user[1] == $_SESSION["user"]["email"] && !isset($user[3])) { ?>
+                <?php if ($user[1] == $_SESSION["user"]["email"] && !isset($user[4])) { ?>
                     <label for="file"><img src="img/user.svg" alt="user"></label>
                 <?php } ?>
             <?php } ?>
             <p><?= $_SESSION["user"]["userName"]; ?></p>
         </form>
-        <?php if ($_SESSION["user"]["email"] !== "ADMIN_PRO_MAX@gmail.com") { ?> 
+        <?php if ($_SESSION["user"]["email"] !== "ADMIN_PRO_MAX@gmail.com") { ?>
             <form action="task.php" method="post" class="form">
                 <input type="submit" value="розпочати тестування" class="button green">
             </form>

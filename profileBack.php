@@ -27,8 +27,8 @@
 
     if (isset($_POST["done"]) && !empty($_FILES["ava"]["name"])) {
         foreach ($usersData as $key => $user) {
-            if ($user[1] == $_SESSION["user"]["email"] && isset($user[3]) && file_exists($user[3])) {
-                unlink($user[3]);
+            if ($user[1] == $_SESSION["user"]["email"] && isset($user[4]) && file_exists($user[4])) {
+                unlink($user[4]);
             }
         }
         
@@ -45,17 +45,10 @@
             move_uploaded_file($_FILES["ava"]["tmp_name"], $target_file);
             foreach ($usersData as $key => $user) {
                 if ($user[1] == $_SESSION["user"]["email"]) {
-                    $usersData[$key][3] = $target_file;
+                    $usersData[$key][4] = $target_file;
                 }
             }
-    
-            $stream = fopen("csv/users.csv", "w");
-    
-            foreach ($usersData as $user) {
-                fputcsv($stream, $user);
-            }
-    
-            fclose($stream);
+            writeCsv("csv/users.csv", "w", $usersData);
         }
     }
 
@@ -65,22 +58,14 @@
         foreach ($usersData as $key => $user) {
             if ($user[1] == $_SESSION["user"]["email"]) {
                 $usersData[$key][0] = $_POST["newName"];
-                if (isset($usersData[$key][3]) && !empty($_FILES["ava"]["name"])) {
-                    $lastFileName = $usersData[$key][3];
-                    $usersData[$key][3] = explode("/", $usersData[$key][3])[0] . "/" . $_POST["newName"] . "." . explode(".", $usersData[$key][3])[1];
-                    rename($lastFileName, $usersData[$key][3]);
+                if (isset($usersData[$key][4]) && !empty($_FILES["ava"]["name"])) {
+                    $lastFileName = $usersData[$key][4];
+                    $usersData[$key][4] = explode("/", $usersData[$key][4])[0] . "/" . $_POST["newName"] . "." . explode(".", $usersData[$key][4])[1];
+                    rename($lastFileName, $usersData[$key][4]);
                 }
             }
         }
-
-        $stream = fopen("csv/users.csv", "w");
-
-        foreach ($usersData as $user) {
-            fputcsv($stream, $user);
-        }
-
-        fclose($stream);
-    
+        writeCsv("csv/users.csv", "w", $usersData);
         $_SESSION["user"]["userName"] = $_POST["newName"];
         // header("location: profile.php");
     }
@@ -90,26 +75,12 @@
     }
     
     if (isset($_POST["delete"])) {
-        $stream = fopen("csv/users.csv", "r");
-        $usersData = [];
-        while ($row = fgetcsv($stream)) {
-            $usersData[] = $row;
-        } 
-        fclose($stream);
-
         foreach ($usersData as $key => $user) {
             if ($user[1] == $_SESSION["user"]["email"]) {
                 unset($usersData[$key]);
             }
         }
-
-        $stream = fopen("csv/users.csv", "w");
-
-        foreach ($usersData as $user) {
-            fputcsv($stream, $user);
-        }
-
-        fclose($stream);
+        writeCsv("csv/users.csv", "w", $usersData);
         unset($_SESSION["user"]);
         header("location: index.php");
     }

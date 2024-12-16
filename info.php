@@ -17,8 +17,14 @@
             <tr>
                 <form action="infoResults.php" method="post">
                     <td><?= $key ?></td>
+                    <?php if (isset($user[4])) { ?>
+                        <td><img src="<?= $user[4] ?>" alt="ava"></td>
+                    <?php } else { ?>
+                            <td><img src="img/user.svg" alt="ava"></td>
+                    <?php } ?>
                     <td><?= $user[0] ?></td>
                     <td><?= $user[1] ?></td>
+                    <td><?= $user[2] ?></td>
                     <td><input type="submit" name="sub" value="результати користувачів"></td>
                     <input type="hidden" name="email" value="<?= $user[1] ?>">
                 </form>
