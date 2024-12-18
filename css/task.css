@@ -86,7 +86,7 @@ body form {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #e37500;
+    background: -730px -870px url(../img/bgButton.svg);
     width: 250px;
     height: 110px;
     padding: 10px;
@@ -98,23 +98,24 @@ body form {
 }
 
 .dark .answerL {
-    background: #1f6feb;
+    background: -730px -870px url(../img/bgButtonTwo.svg);
 }
 
 .answerL:hover {
-    background: #c96800;
+    background: -150px -150px url(../img/bgButton.svg);
+    cursor: pointer;
 }
 
 .dark .answerL:hover {
-    background: #0052cd;
+    background: -150px -150px url(../img/bgButtonTwo.svg);
 }
 
 .answer:checked+.answerL {
-    background: #c96800;
+    background: -150px -150px url(../img/bgButton.svg);
 }
 
 .dark .answer:checked+.answerL {
-    background: #0052cd;
+    background: -150px -150px url(../img/bgButtonTwo.svg);
 }
 
 .reletive {
