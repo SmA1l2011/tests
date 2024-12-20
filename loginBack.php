@@ -1,6 +1,6 @@
 <?php 
 
-    if (isset($_POST["password"]) && isset($_POST["email"]) && isset($_POST["phone"])) {
+    if ($_POST && !isset($_POST["error"])) {
         $usersData = readCsv("csv/users.csv", "r");
         try {
             $phone = $_POST["phone"];
@@ -18,7 +18,7 @@
             }
             throw new Exception("пошта, номер телефону або пароль введено не коректно");
         } catch (Exception $err) {
-            $error = $err->getMessage();
+            $error = "<p class='error'>" . $err->getMessage() . "</p>";
         }
     }
 

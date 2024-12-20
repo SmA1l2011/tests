@@ -11,16 +11,41 @@
     <link rel="stylesheet" href="css/form.css">
 </head>
 <body>
-    <form action="register.php" method="post" class="form">
-        <h1>Реєстрація</h1>
-        <input type="text" name="userName" placeholder="введіть ім'я користувача" value="<?= $_POST["userName"] ?? "" ?>" maxlength="50">
-        <input type="text" name="email" placeholder="введіть свій email" value="<?= $_POST["email"] ?? "" ?>" maxlength="50">
-        <input type="text" name="phone" placeholder="введіть свій номер телефону" value="<?= $_POST["phone"] ?? "" ?>" maxlength="20">
-        <input type="password" name="password" placeholder="введіть свій пароль" maxlength="24">
-        <input type="password" name="passwordAg" placeholder="введіть свій пароль повторно" maxlength="24">
-        <p><?= $error ?? "" ?></p>
-        <a href="login.php">логінізація</a>
-        <input type="submit" value="зарейструватись" class="button">
+    <h1>Реєстрація</h1>
+    <form action="register.php" method="post">
+        <?php if (isset($error)) { ?>
+            <div class="error-block">
+                <?= $error ?? "" ?>
+                <label for="error"><span></span><input type="submit" name="error" id="error" value=""></label>
+            </div>
+            <?php unset($error) ?>
+        <?php } ?>
+        <div class="form">
+            <div>
+                <label for="userName">введіть ім'я користувача</label>
+                <input type="text" name="userName" id="userName" value="<?= $_POST["userName"] ?? "" ?>" maxlength="50">
+            </div>
+            <div>
+                <label for="email">введіть свій email</label>
+                <input type="email" name="email" id="email" value="<?= $_POST["email"] ?? "" ?>" maxlength="50">
+            </div>
+            <div>
+                <label for="phone">введіть свій номер телефону</label>
+                <input type="text" name="phone" id="phone" value="<?= $_POST["phone"] ?? "" ?>" maxlength="20">
+            </div>
+            <div>
+                <label for="password">введіть свій пароль</label>
+                <input type="password" name="password" id="password" maxlength="24">
+            </div>
+            <div>
+                <label for="passwordAg">введіть свій пароль повторно</label>
+                <input type="password" name="passwordAg" id="passwordAg" maxlength="24">
+            </div>
+            <input type="submit" value="зарейструватись" class="button">
+        </div>
     </form>
+    <div class="log">
+        <p>Вже зарейстровані на тестах?</p><p><a href="login.php">перейдіть до логінізації</a></p>
+    </div>
 </body>
 </html>

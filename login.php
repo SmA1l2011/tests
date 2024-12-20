@@ -11,14 +11,34 @@
     <link rel="stylesheet" href="css/form.css">
 </head>
 <body>
-    <form action="login.php" method="post" class="form">
-        <h1>Логінізація</h1>
-        <input type="email" name="email" placeholder="введіть свій email" value="<?= $_POST["email"] ?? "" ?>" maxlength="50">
-        <input type="text" name="phone" placeholder="введіть свій номер телефону" value="<?= $_POST["phone"] ?? "" ?>" maxlength="15">
-        <input type="password" name="password" placeholder="введіть свій пароль" maxlength="24">
-        <p><?= $error ?? "" ?></p>
-        <a href="register.php">регестрація</a>
-        <input type="submit" value="залогінитись" class="button">
+    <h1>Логінізація</h1>
+    <form action="login.php" method="post">
+        <?php if (isset($error)) { ?>
+            <div class="error-block">
+                <?= $error ?? "" ?>
+                <label for="error"><span></span><input type="submit" name="error" id="error" value=""></label>
+            </div>
+            <?php unset($error) ?>
+        <?php } ?>
+        <div class="form">
+            <div>
+                <label for="email">введіть свій email</label>
+                <input type="email" name="email" id="email" value="<?= $_POST["email"] ?? "" ?>" maxlength="50">
+            </div>
+            <div>
+                <label for="phone">введіть свій номер телефону</label>
+                <input type="text" name="phone" id="phone" value="<?= $_POST["phone"] ?? "" ?>" maxlength="20">
+            </div>
+            <div>
+                <label for="password">введіть свій пароль</label>
+                <input type="password" name="password" id="password" maxlength="24">
+            </div>
+            <input type="submit" value="залогінитись" class="button">
+        </div>
     </form>
+    <div class="reg">
+        <p>^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^</p>
+        <p>Вперше на тестах? <a href="register.php">створіть акаунт</a></p>
+    </div>
 </body>
 </html>
